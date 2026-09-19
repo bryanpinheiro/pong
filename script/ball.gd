@@ -14,3 +14,7 @@ func _physics_process(delta: float) -> void:
 		direction = direction.bounce(normal)
 		hit_sound.play()
 	
+
+
+func _on_main_game_over() -> void:
+	speed = 0

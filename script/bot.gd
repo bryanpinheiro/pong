@@ -17,3 +17,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = lerpf(velocity.y, speed * -1, 6 * delta)
 		
 	move_and_slide()
+
+
+func _on_main_game_over() -> void:
+	set_physics_process(false)

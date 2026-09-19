@@ -6,9 +6,8 @@
 [ext_resource type="Script" uid="uid://b1bwe7aidpv6p" path="res://script/bot.gd" id="3_brvut"]
 [ext_resource type="AudioStream" uid="uid://d3palfele3esa" path="res://asset/sound/hit01.sfxr" id="5_0ha60"]
 [ext_resource type="AudioStream" uid="uid://dwyruj1q3cc41" path="res://asset/sound/player_score.sfxr" id="6_p1hux"]
-[ext_resource type="AudioStream" uid="uid://wwp886pvdyk3" path="res://asset/sound/soundtrack.ogg" id="7_b5f6u"]
+[ext_resource type="Script" uid="uid://ly00fd7245ht" path="res://scene/pause_screen.gd" id="6_tqoya"]
 [ext_resource type="AudioStream" uid="uid://bbbhr1kp4greo" path="res://asset/sound/bot_score.sfxr" id="7_of57s"]
-[ext_resource type="Script" uid="uid://dfb5i7axmy2pn" path="res://script/pause_node.gd" id="9_b5f6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajdik"]
 size = Vector2(20, 144)
@@ -110,21 +109,101 @@ grow_horizontal = 2
 text = "0x0"
 horizontal_alignment = 1
 
+[node name="PauseScreen" type="Panel" parent="CanvasLayer" unique_id=1443492307]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_tqoya")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseScreen" unique_id=74240421]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=1869119876]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[wave][font_size=26]PAUSED"
+fit_content = true
+autowrap_mode = 0
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=366470916]
+layout_mode = 2
+text = "Continuar"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=885319464]
+layout_mode = 2
+text = "Menu Principal"
+
+[node name="ResultScreen" type="Panel" parent="CanvasLayer" unique_id=1381657588]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ResultScreen" unique_id=185914197]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Results" type="RichTextLabel" parent="CanvasLayer/ResultScreen/VBoxContainer" unique_id=730631087]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[shake]VOCE NAO DEVERIA LER ISSO É UM BUG"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Restart" type="Button" parent="CanvasLayer/ResultScreen/VBoxContainer" unique_id=866559382]
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "REINICIAR"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/ResultScreen/VBoxContainer" unique_id=1026205172]
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MENU PRINCIPAL"
+
 [node name="PlayerScoreSound" type="AudioStreamPlayer" parent="." unique_id=797620305]
 stream = ExtResource("6_p1hux")
-
-[node name="Soundtrack" type="AudioStreamPlayer" parent="." unique_id=1490699227]
-stream = ExtResource("7_b5f6u")
-volume_db = -10.947
-autoplay = true
-parameters/looping = true
 
 [node name="BotScoreSound" type="AudioStreamPlayer" parent="." unique_id=113649500]
 stream = ExtResource("7_of57s")
 
-[node name="PauseNode" type="Node" parent="." unique_id=1965802201]
-process_mode = 2
-script = ExtResource("9_b5f6u")
-
+[connection signal="game_over" from="." to="Player2" method="_on_main_game_over"]
+[connection signal="game_over" from="." to="Ball" method="_on_main_game_over"]
 [connection signal="body_entered" from="GoalOne" to="." method="_on_goal_one_body_entered"]
 [connection signal="body_entered" from="GoalTwo" to="." method="_on_goal_two_body_entered"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/PauseButton" to="CanvasLayer/PauseScreen" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/MainMenu" to="CanvasLayer/PauseScreen" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResultScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResultScreen/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

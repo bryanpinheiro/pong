@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://1vqqfji7omvl"]
+
+[ext_resource type="AudioStream" uid="uid://wwp886pvdyk3" path="res://asset/sound/soundtrack.ogg" id="1_nr1y7"]
+
+[node name="Soundtrack" type="AudioStreamPlayer" unique_id=873734788]
+stream = ExtResource("1_nr1y7")
+volume_db = -10.947
+autoplay = true
+parameters/looping = true
