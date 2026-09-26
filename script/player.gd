@@ -14,3 +14,11 @@ func _physics_process(delta: float) -> void:
 		speed = lerpf(speed, max_speed, 1 * delta)
 	else:
 		speed = lerpf(speed, 0, 50 * delta)
+
+
+func _on_main_idle_started():
+	set_physics_process(false)
+
+
+func _on_main_ingame_started():
+	set_physics_process(true)

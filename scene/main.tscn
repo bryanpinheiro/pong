@@ -193,6 +193,30 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "MENU PRINCIPAL"
 
+[node name="CountdownLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1564314926]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.41568628, 1, 0.4862745, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 120
+text = "BUG"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayerScoreSound" type="AudioStreamPlayer" parent="." unique_id=797620305]
 stream = ExtResource("6_p1hux")
 
@@ -201,6 +225,13 @@ stream = ExtResource("7_of57s")
 
 [connection signal="game_over" from="." to="Player2" method="_on_main_game_over"]
 [connection signal="game_over" from="." to="Ball" method="_on_main_game_over"]
+[connection signal="idle_started" from="." to="Player" method="_on_main_idle_started"]
+[connection signal="idle_started" from="." to="Player2" method="_on_main_idle_started"]
+[connection signal="idle_started" from="." to="Ball" method="_on_main_idle_started"]
+[connection signal="ingame_started" from="." to="Player" method="_on_main_ingame_started"]
+[connection signal="ingame_started" from="." to="Player2" method="_on_main_ingame_started"]
+[connection signal="ingame_started" from="." to="Ball" method="_on_main_ingame_started"]
+[connection signal="stats_started" from="." to="CanvasLayer/PauseScreen" method="_on_main_stats_started"]
 [connection signal="body_entered" from="GoalOne" to="." method="_on_goal_one_body_entered"]
 [connection signal="body_entered" from="GoalTwo" to="." method="_on_goal_two_body_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/PauseButton" to="CanvasLayer/PauseScreen" method="_on_button_pressed"]

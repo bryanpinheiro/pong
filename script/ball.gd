@@ -15,6 +15,13 @@ func _physics_process(delta: float) -> void:
 		hit_sound.play()
 	
 
-
 func _on_main_game_over() -> void:
 	speed = 0
+
+
+func _on_main_idle_started():
+	speed = 0
+
+
+func _on_main_ingame_started():
+	speed = 500

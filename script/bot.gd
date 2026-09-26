@@ -21,3 +21,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_main_game_over() -> void:
 	set_physics_process(false)
+
+
+func _on_main_idle_started():
+	set_physics_process(false)
+
+
+func _on_main_ingame_started():
+	set_physics_process(true)
